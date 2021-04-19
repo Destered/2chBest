@@ -1,27 +1,31 @@
 package com.dester.a2chbest.fragment.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.dester.a2chbest.api.response.BoardCategoryResponse
+import com.dester.a2chbest.api.model.Category
 import com.dester.a2chbest.databinding.CategoryCardBinding
-import java.util.ArrayList
+import java.util.*
 
 class MainScreenAdapter: RecyclerView.Adapter<MainScreenAdapter.VH>() {
 
-    private val items: ArrayList<String> = arrayListOf()
+    private val items: ArrayList<Category> = arrayListOf()
+
+    private var clickItem: ((String) -> Unit)? = null
 
     override fun getItemCount(): Int = items.size
 
-    fun setItems(items: List<String>) {
+    fun setItems(items: List<Category>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 
-    fun addItem(item: String) {
+    fun setClickAction(action: (String) -> Unit) {
+        clickItem = action
+    }
+
+    fun addItem(item: Category) {
         this.items.add(item)
         notifyDataSetChanged()
     }
@@ -40,8 +44,11 @@ class MainScreenAdapter: RecyclerView.Adapter<MainScreenAdapter.VH>() {
     inner class VH(private val binding: CategoryCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int, boardCategory: String) {
-            binding.categoryName.text = boardCategory
+        fun bind(position: Int, boardCategory: Category) {
+            binding.categoryName.text = boardCategory.name
+            binding.categoryName.setOnClickListener {
+                clickItem?.invoke(boardCategory.name)
+            }
         }
     }
 }

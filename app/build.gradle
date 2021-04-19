@@ -69,9 +69,14 @@ dependencies {
     // region Retrofit
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit}"
     // endregion
 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0' // 3.13.+ require minSDK 21
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

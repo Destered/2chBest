@@ -7,5 +7,35 @@
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="com.dester.a2chbest.fragment.main.MainScreenFragment"
-        android:label="fragment_main" />
+        android:label="fragment_main">
+        <action
+            android:id="@+id/action_mainScreenFragment_to_subCategoryFragment"
+            app:destination="@id/subCategoryFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCategoryFragment"
+        android:name="com.dester.a2chbest.fragment.sub_category.SubCategoryFragment"
+        android:label="SubCategoryFragment">
+        <action
+            android:id="@+id/action_subCategoryFragment_to_treadFragment"
+            app:destination="@id/treadFragment" />
+        <action
+            android:id="@+id/action_subCategoryFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/treadFragment"
+        android:name="com.dester.a2chbest.fragment.thread.TreadFragment"
+        android:label="TreadFragment">
+        <action
+            android:id="@+id/action_treadFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.dester.a2chbest.fragment.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

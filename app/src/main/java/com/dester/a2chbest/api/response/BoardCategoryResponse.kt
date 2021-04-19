@@ -1,6 +1,7 @@
 package com.dester.a2chbest.api.response
 
 
+import com.dester.a2chbest.api.model.Icon
 import com.google.gson.annotations.SerializedName
 
 data class BoardCategoryResponse(

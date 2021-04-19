@@ -1,11 +1,11 @@
 package com.dester.a2chbest.fragment.thread
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.dester.a2chbest.R
 
 class TreadFragment : Fragment() {
@@ -26,7 +26,7 @@ class TreadFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(TreadViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 
 }

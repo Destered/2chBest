@@ -1,4 +1,4 @@
-package com.dester.a2chbest.api.response
+package com.dester.a2chbest.api.model
 
 
 import com.google.gson.annotations.SerializedName
