@@ -38,7 +38,9 @@ class MainScreenFragment : BaseFragment<MainScreenVM>() {
     }
 
     fun openSubCategory(categoryName: String) {
-
+        val action =
+            MainScreenFragmentDirections.actionMainScreenFragmentToSubCategoryFragment(categoryName)
+        navigationController.navigate(action)
     }
 
 

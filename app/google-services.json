@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "291358287627",
+    "project_id": "chclient-ee9de",
+    "storage_bucket": "chclient-ee9de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291358287627:android:ead0e2d0034dfc11db240e",
+        "android_client_info": {
+          "package_name": "com.dester.a2chbest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291358287627-137v1uhapnmnlcdn5n76crda75ref1qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-NW7W7mCEKqDCPwGtyRsDyIecacV-BHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291358287627-137v1uhapnmnlcdn5n76crda75ref1qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
