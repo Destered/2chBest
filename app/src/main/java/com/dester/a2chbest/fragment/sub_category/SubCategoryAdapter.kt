@@ -1,29 +1,31 @@
-package com.dester.a2chbest.fragment.main
+package com.dester.a2chbest.fragment.sub_category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dester.a2chbest.api.model.Category
+import com.dester.a2chbest.api.model.SubCategory
 import com.dester.a2chbest.databinding.CategoryCardBinding
-import timber.log.Timber
 import java.util.*
 
-class MainScreenAdapter(
-    val openSubcategory: (String) -> Unit
-) : RecyclerView.Adapter<MainScreenAdapter.VH>() {
+class SubCategoryAdapter : RecyclerView.Adapter<SubCategoryAdapter.VH>() {
 
-    private val items: ArrayList<Category> = arrayListOf()
+    private val items: ArrayList<SubCategory> = arrayListOf()
 
+    private var clickItem: ((String) -> Unit)? = null
 
     override fun getItemCount(): Int = items.size
 
-    fun setItems(items: List<Category>) {
+    fun setItems(items: List<SubCategory>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 
-    fun addItem(item: Category) {
+    fun setClickAction(action: (String) -> Unit) {
+        clickItem = action
+    }
+
+    fun addItem(item: SubCategory) {
         this.items.add(item)
         notifyDataSetChanged()
     }
@@ -41,12 +43,11 @@ class MainScreenAdapter(
 
     inner class VH(private val binding: CategoryCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int, boardCategory: Category) {
 
+        fun bind(position: Int, boardCategory: SubCategory) {
             binding.name.text = boardCategory.name
             binding.root.setOnClickListener {
-                Timber.d("dest/MainScreenAdapter: clickOnItem= ${boardCategory.name}")
-                openSubcategory.invoke(boardCategory.name)
+                clickItem?.invoke(boardCategory.name)
             }
         }
     }

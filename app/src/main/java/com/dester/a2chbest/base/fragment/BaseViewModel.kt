@@ -1,4 +1,4 @@
-package com.dester.a2chbest.base
+package com.dester.a2chbest.base.fragment
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

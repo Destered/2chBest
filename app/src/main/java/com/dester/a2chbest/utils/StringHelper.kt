@@ -12,17 +12,72 @@ class StringHelper {
         fun getAllEmptyCategory(categoryResponse: AllBoardCategoryResponse): List<Category> {
             val categoryList = arrayListOf<Category>()
             categoryList.apply {
-                this.add(getCategory(categoryResponse.adult))
-                this.add(getCategory(categoryResponse.art))
-                this.add(getCategory(categoryResponse.common))
-                this.add(getCategory(categoryResponse.game))
-                this.add(getCategory(categoryResponse.japanCulture))
-                this.add(getCategory(categoryResponse.policy))
-                this.add(getCategory(categoryResponse.techAndSoft))
-                this.add(getCategory(categoryResponse.thematic))
-                this.add(getCategory(categoryResponse.userCreated))
+                this.add(getEmptyCategory(categoryResponse.adult))
+                this.add(getEmptyCategory(categoryResponse.art))
+                this.add(getEmptyCategory(categoryResponse.common))
+                this.add(getEmptyCategory(categoryResponse.game))
+                this.add(getEmptyCategory(categoryResponse.japanCulture))
+                this.add(getEmptyCategory(categoryResponse.policy))
+                this.add(getEmptyCategory(categoryResponse.techAndSoft))
+                this.add(getEmptyCategory(categoryResponse.thematic))
+                this.add(getEmptyCategory(categoryResponse.userCreated))
             }
             return categoryList
+        }
+
+        fun getSubcategoryByName(
+            categories: AllBoardCategoryResponse,
+            categoryName: String
+        ): List<SubCategory> {
+            var returnList = arrayListOf<SubCategory>()
+            when (categoryName) {
+                "Взрослым" -> {
+                    categories.adult.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Пользовательские" -> {
+                    categories.userCreated.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Политика" -> {
+                    categories.policy.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Игры" -> {
+                    categories.game.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Разное" -> {
+                    categories.common.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Творчество" -> {
+                    categories.art.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Тематика" -> {
+                    categories.thematic.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Техника и софт" -> {
+                    categories.techAndSoft.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+                "Японская культура" -> {
+                    categories.japanCulture.forEach {
+                        returnList.add(SubCategory(it.name, it.id))
+                    }
+                }
+            }
+            return returnList
         }
 
         fun getAllCategory(categoryResponse: AllBoardCategoryResponse): List<Category> {
@@ -42,7 +97,7 @@ class StringHelper {
         }
 
         fun getEmptyCategory(category: List<BoardCategoryResponse>): Category {
-            var answerCategory: Category = Category(category.first().name, arrayListOf())
+            var answerCategory: Category = Category(category.first().category, arrayListOf())
             return answerCategory
         }
 

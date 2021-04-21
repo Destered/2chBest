@@ -1,4 +1,4 @@
-package com.dester.a2chbest.base
+package com.dester.a2chbest.base.fragment
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
