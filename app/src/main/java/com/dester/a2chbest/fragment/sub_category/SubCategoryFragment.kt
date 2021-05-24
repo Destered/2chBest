@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dester.a2chbest.base.fragment.BaseFragment
 import com.dester.a2chbest.databinding.FragmentSubcategoryBinding
+import com.dester.a2chbest.di.DaggerDaggerComponent
+import com.dester.a2chbest.utils.StringHelper
 
 class SubCategoryFragment : BaseFragment<SubCategoryVM>() {
 
@@ -20,7 +22,8 @@ class SubCategoryFragment : BaseFragment<SubCategoryVM>() {
     ): View? {
         binding = FragmentSubcategoryBinding.inflate(layoutInflater)
         category = arguments?.getString("parentName") ?: "Пользовательское"
-        viewModel = SubCategoryVM(viewLifecycleOwner, category)
+        viewModel = DaggerDaggerComponent.create().getSubCategoryVM()
+        initSubCategoryVM()
         binding.apply {
             vm = viewModel
             lifecycleOwner = this@SubCategoryFragment
@@ -31,5 +34,19 @@ class SubCategoryFragment : BaseFragment<SubCategoryVM>() {
         return binding.root
     }
 
+    private fun initSubCategoryVM() {
+        viewModel.apply {
+            boardSubCategoryResponse.observe(viewLifecycleOwner, {
+                subCategoryAdapter.setItems(StringHelper.getSubcategoryByName(it, category))
+            })
+            setOpenSubCategory { name -> openSubCategory(name) }
+            initBoards()
+        }
+    }
 
+    fun openSubCategory(subCategoryName: String) {
+        val action =
+            SubCategoryFragmentDirections.actionSubCategoryFragmentToTreadFragment(subCategoryName)
+        navigationController.navigate(action)
+    }
 }

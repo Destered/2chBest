@@ -2,32 +2,30 @@ package com.dester.a2chbest.fragment.main
 
 
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.dester.a2chbest.api.ApiFactory
 import com.dester.a2chbest.api.response.AllBoardCategoryResponse
 import com.dester.a2chbest.base.fragment.BaseViewModel
-import com.dester.a2chbest.utils.StringHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import javax.inject.Inject
 
 
-class MainScreenVM(
-    owner: LifecycleOwner,
-    val openSubCategory: (String) -> Unit
-) : BaseViewModel() {
+class MainScreenVM @Inject constructor() : BaseViewModel() {
 
     val boardCategoryResponse = MutableLiveData<AllBoardCategoryResponse>()
 
     val mainScreenAdapter: MainScreenAdapter = MainScreenAdapter({ name -> openSubCategory(name) })
 
+    private lateinit var openSubCategory: ((String) -> Unit)
+
+    fun setOpenSubCategoryMethod(method: ((String) -> Unit)) {
+        openSubCategory = method
+    }
+
 
     init {
-        boardCategoryResponse.observe(owner, {
-            Log.d("dest/MainScreenVM", "observe boardCategory = ${it.japanCulture.size}")
-            mainScreenAdapter.setItems(StringHelper.getAllEmptyCategory(it))
-        })
         initBoards()
     }
 

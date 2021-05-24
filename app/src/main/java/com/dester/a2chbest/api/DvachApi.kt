@@ -2,6 +2,7 @@ package com.dester.a2chbest.api
 
 import com.dester.a2chbest.api.model.Post
 import com.dester.a2chbest.api.response.AllBoardCategoryResponse
+import com.dester.a2chbest.api.response.ThreadListForPagesResponse
 import com.dester.a2chbest.api.response.ThreadListResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -13,11 +14,6 @@ interface DvachApi : BaseService {
     @GET("makaba/mobile.fcgi?task=get_boards")
     fun getAllBoardsCategory(): Single<AllBoardCategoryResponse>
 
-    @GET("{board}/catalog.json")
-    fun getThreadsFromBoard(
-        @Path("board") board: String
-    ): Nothing
-
     @GET("/{id}/catalog.json")
     fun getThreads(@Path("id") boardId: String): Single<ThreadListResponse>
 
@@ -25,7 +21,13 @@ interface DvachApi : BaseService {
     fun getThreadsForPages(
         @Path("id") boardId: String,
         @Path("page") page: String
-    ): Single<ThreadListResponse>
+    ): Single<ThreadListForPagesResponse>
+
+    @GET("/makaba/mobile.fcgi?task=get_thread&post=0")
+    fun getPostFromThread(
+        @Query("board") board: String,
+        @Query("thread") thread: String,
+    ): Single<List<Post>>
 
     @GET("/makaba/mobile.fcgi")
     fun getPosts(

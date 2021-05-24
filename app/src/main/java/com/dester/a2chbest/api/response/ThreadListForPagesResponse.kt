@@ -5,7 +5,7 @@ import com.dester.a2chbest.api.model.SingleBoard
 import com.dester.a2chbest.api.model.Thread
 import com.google.gson.annotations.SerializedName
 
-data class ThreadListResponse(
+data class ThreadListForPagesResponse(
     @SerializedName("advert_bottom_image")
     val advertBottomImage: String,
     @SerializedName("advert_bottom_link")
@@ -30,8 +30,14 @@ data class ThreadListResponse(
     val boardInfoOuter: String,
     @SerializedName("BoardName")
     val boardName: String,
+    @SerializedName("board_speed")
+    val boardSpeed: Int,
     @SerializedName("bump_limit")
     val bumpLimit: Int,
+    @SerializedName("current_page")
+    val currentPage: Int,
+    @SerializedName("current_thread")
+    val currentThread: Int,
     @SerializedName("default_name")
     val defaultName: String,
     @SerializedName("enable_dices")
@@ -62,12 +68,18 @@ data class ThreadListResponse(
     val enableTrips: Int,
     @SerializedName("enable_video")
     val enableVideo: Int,
-    @SerializedName("filter")
-    val filter: String,
+    @SerializedName("is_board")
+    val isBoard: Int,
+    @SerializedName("is_index")
+    val isIndex: Int,
     @SerializedName("max_comment")
     val maxComment: Int,
     @SerializedName("max_files_size")
     val maxFilesSize: Int,
+    @SerializedName("pages")
+    val pages: List<Int>,
+    @SerializedName("tags")
+    val tags: List<String>,
     @SerializedName("threads")
     val threads: List<Thread>,
     @SerializedName("top")

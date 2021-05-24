@@ -31,14 +31,31 @@
     </fragment>
     <fragment
         android:id="@+id/treadFragment"
-        android:name="com.dester.a2chbest.fragment.thread.TreadFragment"
+        android:name="com.dester.a2chbest.fragment.thread.ThreadFragment"
         android:label="TreadFragment">
         <action
             android:id="@+id/action_treadFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <argument
+            android:name="subCategory"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_treadFragment_to_postFragment"
+            app:destination="@id/postFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.dester.a2chbest.fragment.settings.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.dester.a2chbest.fragment.post.PostFragment"
+        android:label="PostFragment">
+        <argument
+            android:name="postNumber"
+            app:argType="string" />
+        <argument
+            android:name="thread"
+            app:argType="string" />
+    </fragment>
 </navigation>

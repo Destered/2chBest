@@ -1,9 +1,19 @@
 package com.dester.a2chbest.utils
 
+import android.text.Html
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.URLSpan
+import android.view.View
+import android.widget.TextView
 import com.dester.a2chbest.api.model.Category
 import com.dester.a2chbest.api.model.SubCategory
 import com.dester.a2chbest.api.response.AllBoardCategoryResponse
 import com.dester.a2chbest.api.response.BoardCategoryResponse
+import timber.log.Timber
+
 
 class StringHelper {
 
@@ -117,6 +127,33 @@ class StringHelper {
             return answerCategory
         }
 
+        fun parseHtml(html: String?): Spanned {
+            return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+        }
+
+        fun makeLinkClickable(strBuilder: SpannableStringBuilder, span: URLSpan?) {
+            val start = strBuilder.getSpanStart(span)
+            val end = strBuilder.getSpanEnd(span)
+            val flags = strBuilder.getSpanFlags(span)
+            val clickable: ClickableSpan = object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    Timber.d("clickableSpan: span=$span")
+                }
+            }
+            strBuilder.setSpan(clickable, start, end, flags)
+            strBuilder.removeSpan(span)
+        }
+
+        fun setTextViewHTML(text: TextView, html: String?) {
+            val sequence: CharSequence = Html.fromHtml(html)
+            val strBuilder = SpannableStringBuilder(sequence)
+            val urls = strBuilder.getSpans(0, sequence.length, URLSpan::class.java)
+            for (span in urls) {
+                makeLinkClickable(strBuilder, span)
+            }
+            text.text = strBuilder
+            text.movementMethod = LinkMovementMethod.getInstance()
+        }
 
     }
 

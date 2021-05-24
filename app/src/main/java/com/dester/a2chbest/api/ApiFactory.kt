@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit
 
 object ApiFactory {
 
+    val BASE_URL = "https://2ch.hk"
+
     private val apiKeyInterceptor = Interceptor { chain ->
         val original = chain.request()
         original.url.newBuilder()

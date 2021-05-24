@@ -7,11 +7,11 @@ import com.dester.a2chbest.api.model.SubCategory
 import com.dester.a2chbest.databinding.CategoryCardBinding
 import java.util.*
 
-class SubCategoryAdapter : RecyclerView.Adapter<SubCategoryAdapter.VH>() {
+class SubCategoryAdapter(
+    val openSubcategory: (String) -> Unit
+) : RecyclerView.Adapter<SubCategoryAdapter.VH>() {
 
     private val items: ArrayList<SubCategory> = arrayListOf()
-
-    private var clickItem: ((String) -> Unit)? = null
 
     override fun getItemCount(): Int = items.size
 
@@ -21,9 +21,6 @@ class SubCategoryAdapter : RecyclerView.Adapter<SubCategoryAdapter.VH>() {
         notifyDataSetChanged()
     }
 
-    fun setClickAction(action: (String) -> Unit) {
-        clickItem = action
-    }
 
     fun addItem(item: SubCategory) {
         this.items.add(item)
@@ -47,7 +44,7 @@ class SubCategoryAdapter : RecyclerView.Adapter<SubCategoryAdapter.VH>() {
         fun bind(position: Int, boardCategory: SubCategory) {
             binding.name.text = boardCategory.name
             binding.root.setOnClickListener {
-                clickItem?.invoke(boardCategory.name)
+                openSubcategory.invoke(boardCategory.id)
             }
         }
     }
