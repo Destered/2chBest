@@ -1,42 +1,43 @@
 package com.dester.a2chbest.api.model
 
-import com.google.gson.annotations.Expose
+
 import com.google.gson.annotations.SerializedName
 
 data class Thread(
+    @SerializedName("banned")
+    val banned: Int,
+    @SerializedName("closed")
+    val closed: Int,
     @SerializedName("comment")
-    @Expose
-    private var comment: String? = null,
-
+    val comment: String,
     @SerializedName("date")
-    @Expose
-    private var date: String? = null,
-
+    val date: String,
+    @SerializedName("email")
+    val email: String,
+    @SerializedName("endless")
+    val endless: Int,
     @SerializedName("files")
-    @Expose
-    private var files: List<Files>? = null,
-
+    val files: List<File>,
+    @SerializedName("lasthit")
+    val lasthit: Int,
     @SerializedName("name")
-    @Expose
-    private var name: String? = null,
-
+    val name: String,
     @SerializedName("num")
-    @Expose
-    private var num: String? = null,
-
-    @SerializedName("files_count")
-    @Expose
-    private var filesCount: String? = null,
-
+    val num: String,
+    @SerializedName("parent")
+    val parent: String,
     @SerializedName("posts_count")
-    @Expose
-    private var postsCount: String? = null,
-
-    @SerializedName("trip")
-    @Expose
-    private var trip: String? = null,
-
+    val postsCount: Int,
+    @SerializedName("sticky")
+    val sticky: Int,
     @SerializedName("subject")
-    @Expose
-    private var subject: String? = null,
+    val subject: String,
+    @SerializedName("tags")
+    val tags: String,
+    @SerializedName("timestamp")
+    val timestamp: Int,
+    @SerializedName("trip")
+    val trip: String,
+    @SerializedName("posts")
+    val posts: List<Post>
 )

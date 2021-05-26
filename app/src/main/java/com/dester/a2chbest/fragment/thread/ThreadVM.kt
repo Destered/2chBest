@@ -127,7 +127,7 @@ class ThreadVM @Inject constructor() : BaseViewModel() {
             thread.email,
             thread.endless,
             thread.files,
-            0,
+            thread.files.count(),
             thread.lasthit,
             thread.name,
             thread.num,
